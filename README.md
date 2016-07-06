@@ -1,0 +1,1 @@
+# rpi-home-assistant
