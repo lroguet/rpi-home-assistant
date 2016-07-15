@@ -1,6 +1,6 @@
 # Home Assistant Docker image for Raspberry Pi
 ## Description
-Dockerfile to build a Raspberry Pi compatible Docker image with [Home Assistant](https://home-assistant.io/).
+Simple script to generate a Dockerfileand  build a Raspberry Pi compatible Docker image with [Home Assistant](https://home-assistant.io/).
 
 ## Simple usage
 `docker run -d --name home_assistant -v /etc/localtime:/etc/localtime:ro lroguet/rpi-home-assistant:latest`
