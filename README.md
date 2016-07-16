@@ -1,7 +1,7 @@
 # Home Assistant Docker image for Raspberry Pi
 
 ## Description
-Generate a Dockerfile and build a Raspberry Pi compatible Docker image with [Home Assistant](https://home-assistant.io/) and push it to https://hub.docker.com.
+Generate a Dockerfile, build a Raspberry Pi compatible Docker image with [Home Assistant](https://home-assistant.io/) and push it to https://hub.docker.com.
 
 ## Build
 `./build.sh 0.23.1` will build a Raspberry Pi compatible Docker image with Home Assistant 0.23.1. *(Note. You may want to comment out the last line of build.sh or update the tags with your own repository.)*
