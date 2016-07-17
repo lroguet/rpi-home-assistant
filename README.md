@@ -4,7 +4,16 @@
 Generate a Dockerfile, build a Raspberry Pi compatible Docker image with [Home Assistant](https://home-assistant.io/) and push it to https://hub.docker.com.
 
 ## Build
-`./build.sh 0.23.1` will build a Raspberry Pi compatible Docker image with Home Assistant 0.23.1. *(Note. You may want to comment out the last line of build.sh or update the tags with your own repository.)*
+
+*Note. You may want to comment out the last line of build.sh or update the tags with your own repository.*
+
+### Latest version
+To build a Docker image with the version of Home Assistant found at https://pypi.python.org/pypi/homeassistant/json just run `./build.sh`
+
+*Note. This build case requires you have 'jq' installed.*
+
+### Specific version
+To build a Docker image with a specific version of Home Assistant run `./build.sh x.y.z` (`./build.sh 0.23.1` for example).
 
 ## Simple usage
 `docker run -d --name home_assistant -v /etc/localtime:/etc/localtime:ro lroguet/rpi-home-assistant:latest`
