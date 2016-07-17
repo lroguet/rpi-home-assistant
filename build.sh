@@ -1,12 +1,13 @@
 #!/bin/bash
 
-## Home Assistant version is an argument to the script
+## Home Assistant version
 if [ "$1" != "" ]; then
-    HA_VERSION=$1
-    echo "Building Docker image with Home Assistant $1"
+   # Provided as an argument
+   echo "Building Docker image with Home Assistant $1"
+   HA_VERSION=$1
 else
-    echo "Home Assistant version was not provided. Exiting."
-    exit 1
+   echo "Building Docker image with Home Assistant 'latest' version" 
+   HA_VERSION="$(curl 'https://pypi.python.org/pypi/homeassistant/json' | jq '.info.version' | tr -d '"')"
 fi
 
 ## Generate the Dockerfile
@@ -37,4 +38,3 @@ _EOF_
 ## Build the Docker image, tag and push to https://hub.docker.com/
 docker build -t lroguet/rpi-home-assistant:$HA_VERSION .
 docker push lroguet/rpi-home-assistant:$HA_VERSION
-
