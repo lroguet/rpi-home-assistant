@@ -2,17 +2,24 @@
 
 HA_LATEST=false
 
+log() {
+   now=$(date +"%Y%m%d-%H%M%S")
+   echo "$now - $*" >> /var/log/home-assistant/docker-build.log
+}
+
+log ">>--------------------->>"
+
 ## #####################################################################
 ## Home Assistant version
 ## #####################################################################
 if [ "$1" != "" ]; then
    # Provided as an argument
-   echo "Building Docker image with Home Assistant $1"
    HA_VERSION=$1
+   log "Building Docker image with Home Assistant $HA_VERSION"
 else
-   echo "Building Docker image with Home Assistant 'latest' version" 
    HA_VERSION="$(curl 'https://pypi.python.org/pypi/homeassistant/json' | jq '.info.version' | tr -d '"')"
    HA_LATEST=true
+   log "Building Docker image with Home Assistant 'latest' (version $HA_VERSION)" 
 fi
 
 ## #####################################################################
@@ -46,9 +53,14 @@ _EOF_
 ## Build the Docker image, tag and push to https://hub.docker.com/
 ## #####################################################################
 docker build -t lroguet/rpi-home-assistant:$HA_VERSION .
+
+log "Pushing lroguet/rpi-home-assistant:$HA_VERSION"
 docker push lroguet/rpi-home-assistant:$HA_VERSION
 
 if [ "$HA_LATEST" = true ]; then
    docker tag lroguet/rpi-home-assistant:$HA_VERSION lroguet/rpi-home-assistant:latest
+   log "Pushing lroguet/rpi-home-assistant:latest"
    docker push lroguet/rpi-home-assistant:latest
 fi
+
+log ">>--------------------->>"
