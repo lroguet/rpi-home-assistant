@@ -1,6 +1,10 @@
 #!/bin/bash
 
+HA_LATEST=false
+
+## #####################################################################
 ## Home Assistant version
+## #####################################################################
 if [ "$1" != "" ]; then
    # Provided as an argument
    echo "Building Docker image with Home Assistant $1"
@@ -8,9 +12,12 @@ if [ "$1" != "" ]; then
 else
    echo "Building Docker image with Home Assistant 'latest' version" 
    HA_VERSION="$(curl 'https://pypi.python.org/pypi/homeassistant/json' | jq '.info.version' | tr -d '"')"
+   HA_LATEST=true
 fi
 
+## #####################################################################
 ## Generate the Dockerfile
+## #####################################################################
 cat << _EOF_ > Dockerfile
 FROM resin/rpi-raspbian
 MAINTAINER Ludovic Roguet <code@fourteenislands.io>
@@ -35,6 +42,13 @@ CMD [ "python3", "-m", "homeassistant", "--config", "/config" ]
 RUN pip3 install homeassistant==$HA_VERSION
 _EOF_
 
+## #####################################################################
 ## Build the Docker image, tag and push to https://hub.docker.com/
+## #####################################################################
 docker build -t lroguet/rpi-home-assistant:$HA_VERSION .
 docker push lroguet/rpi-home-assistant:$HA_VERSION
+
+if [ "$HA_LATEST" = true ]; then
+   docker tag lroguet/rpi-home-assistant:$HA_VERSION lroguet/rpi-home-assistant:latest
+   docker push lroguet/rpi-home-assistant:latest
+fi
