@@ -17,16 +17,17 @@ if [ "$1" != "" ]; then
    HA_VERSION=$1
    log "Docker image with Home Assistant $HA_VERSION"
 else
+   _HA_VERSION="$(cat /var/log/home-assistant/docker-build.version)"
    HA_VERSION="$(curl 'https://pypi.python.org/pypi/homeassistant/json' | jq '.info.version' | tr -d '"')"
    HA_LATEST=true
    log "Docker image with Home Assistant 'latest' (version $HA_VERSION)" 
 fi
 
 ## #####################################################################
+## For hourly (not parameterized) builds (crontab)
 ## Do nothing: we're trying to build & push the same version again
 ## #####################################################################
-_HA_VERSION="$(cat /var/log/home-assistant/docker-build.version)"
-if [ "$HA_VERSION" = "$_HA_VERSION" ]; then
+if [ "$HA_LATEST" = true ] && [ "$HA_VERSION" = "$_HA_VERSION" ]; then
    log "Docker image with Home Assistant $HA_VERSION has already been built & pushed"
    log ">>--------------------->>"
    exit 0
@@ -73,8 +74,7 @@ if [ "$HA_LATEST" = true ]; then
    docker tag lroguet/rpi-home-assistant:$HA_VERSION lroguet/rpi-home-assistant:latest
    log "Pushing lroguet/rpi-home-assistant:latest"
    docker push lroguet/rpi-home-assistant:latest
+   echo $HA_VERSION > /var/log/home-assistant/docker-build.version
 fi
 
 log ">>--------------------->>"
-
-echo $HA_VERSION > /var/log/home-assistant/docker-build.version
