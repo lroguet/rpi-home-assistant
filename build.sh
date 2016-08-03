@@ -46,7 +46,7 @@ ENV CROSS_COMPILE=/usr/bin/
 
 # Install some packages
 RUN apt-get update && \
-    apt-get install build-essential python3-dev python3-pip && \
+    apt-get install --no-install-recommends build-essential net-tools nmap python3-dev python3-pip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
