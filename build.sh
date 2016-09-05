@@ -45,6 +45,7 @@ ENV ARCH=arm
 ENV CROSS_COMPILE=/usr/bin/
 
 # Install some packages
+# #1:20160803 - Added net-tools and nmap for https://home-assistant.io/components/device_tracker.nmap_scanner/
 RUN apt-get update && \
     apt-get install --no-install-recommends build-essential net-tools nmap python3-dev python3-pip && \
     apt-get clean && \
