@@ -1,3 +1,4 @@
+[![lroguet/rpi-home-assistant](https://img.shields.io/docker/pulls/lroguet/rpi-home-assistant.svg)](https://hub.docker.com/r/lroguet/rpi-home-assistant/)
 [![lroguet/rpi-home-assistant](https://images.microbadger.com/badges/version/lroguet/rpi-home-assistant.svg)](https://hub.docker.com/r/lroguet/rpi-home-assistant/) [![lroguet/rpi-home-assistant](https://images.microbadger.com/badges/image/lroguet/rpi-home-assistant.svg)](https://hub.docker.com/r/lroguet/rpi-home-assistant/)
 
 # Home Assistant Docker image for Raspberry Pi
