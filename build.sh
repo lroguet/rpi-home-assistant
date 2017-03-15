@@ -47,8 +47,9 @@ ENV CROSS_COMPILE=/usr/bin/
 # Install some packages
 # #1: 20160803 - Added net-tools and nmap for https://home-assistant.io/components/device_tracker.nmap_scanner/
 # #3: 20161021 - Added ssh for https://home-assistant.io/components/device_tracker.asuswrt/ 
+# #8: 20170313 - Added ping for  https://home-assistant.io/components/switch.wake_on_lan/
 RUN apt-get update && \
-    apt-get install --no-install-recommends build-essential net-tools nmap python3-dev python3-pip ssh && \
+    apt-get install --no-install-recommends build-essential iputils-ping net-tools nmap python3-dev python3-pip ssh && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
