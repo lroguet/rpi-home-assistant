@@ -67,6 +67,8 @@ _EOF_
 ## Build the Docker image, tag and push to https://hub.docker.com/
 ## #####################################################################
 log "Building lroguet/rpi-home-assistant:$HA_VERSION"
+## Force-pull the base image
+docker pull resin/rpi-raspbian
 docker build -t lroguet/rpi-home-assistant:$HA_VERSION .
 
 log "Pushing lroguet/rpi-home-assistant:$HA_VERSION"
