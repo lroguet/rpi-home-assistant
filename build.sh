@@ -1,6 +1,7 @@
 #!/bin/bash
 
 HA_LATEST=false
+DOCKER_IMAGE_NAME="lroguet/rpi-home-assistant"
 
 log() {
    now=$(date +"%Y%m%d-%H%M%S")
@@ -66,19 +67,19 @@ _EOF_
 ## #####################################################################
 ## Build the Docker image, tag and push to https://hub.docker.com/
 ## #####################################################################
-log "Building lroguet/rpi-home-assistant:$HA_VERSION"
+log "Building $DOCKER_IMAGE_NAME:$HA_VERSION"
 ## Force-pull the base image
 docker pull resin/rpi-raspbian
-docker build -t lroguet/rpi-home-assistant:$HA_VERSION .
+docker build -t $DOCKER_IMAGE_NAME:$HA_VERSION .
 
-log "Pushing lroguet/rpi-home-assistant:$HA_VERSION"
-docker push lroguet/rpi-home-assistant:$HA_VERSION
+log "Pushing $DOCKER_IMAGE_NAME:$HA_VERSION"
+docker push $DOCKER_IMAGE_NAME:$HA_VERSION
 
 if [ "$HA_LATEST" = true ]; then
-   log "Tagging lroguet/rpi-home-assistant:$HA_VERSION with latest"
-   docker tag lroguet/rpi-home-assistant:$HA_VERSION lroguet/rpi-home-assistant:latest
-   log "Pushing lroguet/rpi-home-assistant:latest"
-   docker push lroguet/rpi-home-assistant:latest
+   log "Tagging $DOCKER_IMAGE_NAME:$HA_VERSION with latest"
+   docker tag $DOCKER_IMAGE_NAME:$HA_VERSION $DOCKER_IMAGE_NAME:latest
+   log "Pushing $DOCKER_IMAGE_NAME:latest"
+   docker push $DOCKER_IMAGE_NAME:latest
    echo $HA_VERSION > /var/log/home-assistant/docker-build.version
 fi
 
