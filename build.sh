@@ -21,7 +21,7 @@ else
    _HA_VERSION="$(cat /var/log/home-assistant/docker-build.version)"
    HA_VERSION="$(curl 'https://pypi.python.org/pypi/homeassistant/json' | jq '.info.version' | tr -d '"')"
    HA_LATEST=true
-   log "Docker image with Home Assistant 'latest' (version $HA_VERSION)" 
+   log "Docker image with Home Assistant 'latest' (version $HA_VERSION)"
 fi
 
 ## #####################################################################
@@ -46,11 +46,17 @@ ENV ARCH=arm
 ENV CROSS_COMPILE=/usr/bin/
 
 # Install some packages
-# #1: 20160803 - Added net-tools and nmap for https://home-assistant.io/components/device_tracker.nmap_scanner/
-# #3: 20161021 - Added ssh for https://home-assistant.io/components/device_tracker.asuswrt/ 
-# #8: 20170313 - Added ping for  https://home-assistant.io/components/switch.wake_on_lan/
+# #1:   20160803 - Added net-tools and nmap for https://home-assistant.io/components/device_tracker.nmap_scanner/
+# #3:   20161021 - Added ssh for https://home-assistant.io/components/device_tracker.asuswrt/
+# #8:   20170313 - Added ping for https://home-assistant.io/components/switch.wake_on_lan/
+# #10:  20170328 - Added libffi-dev, libpython-dev and libssl-dev for https://home-assistant.io/components/notify.html5/
 RUN apt-get update && \
-    apt-get install --no-install-recommends build-essential iputils-ping net-tools nmap python3-dev python3-pip ssh && \
+    apt-get install --no-install-recommends \
+      build-essential python3-dev python3-pip \
+      libffi-dev libpython-dev libssl-dev \
+      net-tools nmap \
+      iputils-ping \
+      ssh && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
