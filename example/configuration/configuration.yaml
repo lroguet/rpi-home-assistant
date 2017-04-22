@@ -1,0 +1,70 @@
+homeassistant:
+  name: Home
+  latitude: __REDACTED__
+  longitude: __REDACTED__
+  unit_system: metric
+  time_zone: Europe/Stockholm
+  # Customization
+  customize: !include customize.yaml
+
+http:
+  api_password: !secret http_password
+
+# Enables support for tracking state changes over time.
+#history:
+
+# View all events in a logbook
+#logbook:
+
+# Checks for available updates
+updater:
+
+# Enables the frontend
+frontend:
+
+# Discover some devices automatically
+#discovery:
+
+group: !include groups.yaml
+
+wemo:
+
+media_player:
+  - platform: cast
+  - platform: sonos
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret spotify_client_secret
+
+netatmo:
+  api_key: !secret netatmo_api_key
+  secret_key: !secret netatmo_secret_key
+  username: !secret netatmo_username
+  password: !secret netatmo_password
+
+sensor:
+  - platform: netatmo
+    station: __REDACTED__
+    modules:
+      Indoors:
+        - temperature
+        - max_temp
+        - min_temp
+        - humidity
+        - noise
+        - pressure
+        - co2
+      Outdoors:
+        - temperature
+        - max_temp
+        - min_temp
+        - humidity
+      Kids bedroom:
+        - temperature
+        - max_temp
+        - min_temp
+        - humidity
+        - co2
+
+  - platform: pi_hole
+    host: 192.168.1.4

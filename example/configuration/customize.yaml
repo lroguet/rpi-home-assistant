@@ -1,0 +1,45 @@
+    # Netatmo
+    sensor.netatmo_indoors_co2:
+      friendly_name: CO2
+    sensor.netatmo_indoors_humidity:
+      friendly_name: Humidity
+    sensor.netatmo_indoors_noise:
+      friendly_name: Noise
+    sensor.netatmo_indoors_pressure:
+      friendly_name: Pressure
+    sensor.netatmo_indoors_temperature:
+      friendly_name: Temperature
+    sensor.netatmo_indoors_max_temp:
+      friendly_name: Temperature (max)
+    sensor.netatmo_indoors_min_temp:
+      friendly_name: Temperature (min)
+    sensor.netatmo_kids_bedroom_co2:
+      friendly_name: CO2
+    sensor.netatmo_kids_bedroom_humidity:
+      friendly_name: Humidity
+    sensor.netatmo_kids_bedroom_temperature:
+      friendly_name: Temperature
+    sensor.netatmo_kids_bedroom_max_temp:
+      friendly_name: Temperature (max)
+    sensor.netatmo_kids_bedroom_min_temp:
+      friendly_name: Temperature (min)
+    sensor.netatmo_outdoors_humidity:
+      friendly_name: Humidity
+    sensor.netatmo_outdoors_temperature:
+      friendly_name: Temperature
+    sensor.netatmo_outdoors_max_temp:
+      friendly_name: Temperature (max)
+    sensor.netatmo_outdoors_min_temp:
+      friendly_name: Temperature (min)
+    # Pi-hole
+    sensor.pihole_ads_blocked_today:
+      friendly_name: Ads blocked today
+    # WeMo
+    switch.light_kitchen:
+      friendly_name: Kitchen light
+    switch.light_comics:
+      friendly_name: Comics
+    switch.light_sofa:
+      friendly_name: Reading light
+    switch.light_world_globe:
+      friendly_name: World Globe

@@ -1,0 +1,94 @@
+  ### Views
+
+  default_view:
+    view: yes
+    name: home
+    entities:
+      - group.balcony
+      - group.cinema_room
+      - group.connectivity
+      - group.kids_bedroom
+      - group.kitchen
+      - group.living_room_all
+      - group.living_room_lights
+      - group.music
+
+  downstairs:
+    view: yes
+    name: downstairs
+    entities:
+      - group.kitchen
+      - group.living_room_all
+      - group.living_room_lights
+
+  upstairs:
+    view: yes
+    name: upstairs
+    entities:
+      - group.cinema_room
+      - group.kids_bedroom
+
+  outdoors:
+    view: true
+    entities:
+      - group.balcony
+
+  ### Groups
+
+  balcony:
+    name: Balcony
+    entities:
+      - sensor.netatmo_outdoors_humidity
+      - sensor.netatmo_outdoors_temperature
+      - sensor.netatmo_outdoors_max_temp
+      - sensor.netatmo_outdoors_min_temp
+  
+  cinema_room:
+    name: Cinema Room
+    entities:
+      - media_player.cinema
+  
+  connectivity:
+    name: Connectivity
+    entities:
+      - sensor.pihole_ads_blocked_today
+
+  kids_bedroom:
+    name: Kids Bedroom
+    entities:
+      - sensor.netatmo_kids_bedroom_co2
+      - sensor.netatmo_kids_bedroom_humidity
+      - sensor.netatmo_kids_bedroom_temperature
+      - sensor.netatmo_kids_bedroom_max_temp
+      - sensor.netatmo_kids_bedroom_min_temp
+  
+  kitchen:
+    name: Kitchen
+    entities:
+      - media_player.kitchen
+      - switch.light_kitchen
+  
+  living_room_all:
+    name: Living Room
+    entities:
+      - media_player.living_room_1
+      - media_player.living_room_5
+      - sensor.netatmo_indoors_co2
+      - sensor.netatmo_indoors_humidity
+      - sensor.netatmo_indoors_noise
+      - sensor.netatmo_indoors_pressure
+      - sensor.netatmo_indoors_temperature
+      - sensor.netatmo_indoors_max_temp
+      - sensor.netatmo_indoors_min_temp
+
+  living_room_lights:
+    name: Lights
+    entities:
+      - switch.light_comics
+      - switch.light_sofa
+      - switch.light_world_globe
+  
+  music:
+    name: Music
+    entities:
+      - media_player.spotify
