@@ -51,11 +51,13 @@ ENV CROSS_COMPILE=/usr/bin/
 # #8:   20170313 - Added ping for https://home-assistant.io/components/switch.wake_on_lan/
 # #10:  20170328 - Added libffi-dev, libpython-dev and libssl-dev for https://home-assistant.io/components/notify.html5/
 # #11:	20170628 - Added libud3v-dev for https://home-assistant.io/components/zwave/
+# #14: 	20170802 - Added bluetooth and libbluetooth-dev for https://home-assistant.io/components/device_tracker.bluetooth_tracker/
 RUN apt-get update && \
     apt-get install --no-install-recommends \
       build-essential python3-dev python3-pip \
       libffi-dev libpython-dev libssl-dev \
       libudev-dev \
+      bluetooth libbluetooth-dev \
       net-tools nmap \
       iputils-ping \
       ssh && \
