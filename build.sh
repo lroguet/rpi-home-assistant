@@ -2,6 +2,7 @@
 
 HA_LATEST=false
 DOCKER_IMAGE_NAME="lroguet/rpi-home-assistant"
+RASPIAN_RELEASE="stretch"
 
 log() {
    now=$(date +"%Y%m%d-%H%M%S")
@@ -38,7 +39,7 @@ fi
 ## Generate the Dockerfile
 ## #####################################################################
 cat << _EOF_ > Dockerfile
-FROM resin/rpi-raspbian
+FROM resin/rpi-raspbian:$RASPIAN_RELEASE
 MAINTAINER Ludovic Roguet <code@fourteenislands.io>
 
 # Base layer
@@ -54,7 +55,7 @@ ENV CROSS_COMPILE=/usr/bin/
 # #14: 	20170802 - Added bluetooth and libbluetooth-dev for https://home-assistant.io/components/device_tracker.bluetooth_tracker/
 RUN apt-get update && \
     apt-get install --no-install-recommends \
-      build-essential python3-dev python3-pip \
+      build-essential python3-dev python3-pip python3-setuptools \
       libffi-dev libpython-dev libssl-dev \
       libudev-dev \
       bluetooth libbluetooth-dev \
@@ -71,6 +72,7 @@ VOLUME /config
 CMD [ "python3", "-m", "homeassistant", "--config", "/config" ]
 
 # Install Home Assistant
+RUN pip3 install wheel
 RUN pip3 install homeassistant==$HA_VERSION
 _EOF_
 
@@ -79,7 +81,7 @@ _EOF_
 ## #####################################################################
 log "Building $DOCKER_IMAGE_NAME:$HA_VERSION"
 ## Force-pull the base image
-docker pull resin/rpi-raspbian
+docker pull resin/rpi-raspbian:$RASPIAN_RELEASE
 docker build -t $DOCKER_IMAGE_NAME:$HA_VERSION .
 
 log "Pushing $DOCKER_IMAGE_NAME:$HA_VERSION"
