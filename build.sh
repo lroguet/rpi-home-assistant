@@ -53,8 +53,10 @@ ENV CROSS_COMPILE=/usr/bin/
 # #10:  20170328 - Added libffi-dev, libpython-dev and libssl-dev for https://home-assistant.io/components/notify.html5/
 # #11:	20170628 - Added libud3v-dev for https://home-assistant.io/components/zwave/
 # #14: 	20170802 - Added bluetooth and libbluetooth-dev for https://home-assistant.io/components/device_tracker.bluetooth_tracker/
+# #17:	20171203 - Added autoconf for https://home-assistant.io/components/tradfri/
 RUN apt-get update && \
     apt-get install --no-install-recommends \
+      autoconf \
       build-essential python3-dev python3-pip python3-setuptools \
       libffi-dev libpython-dev libssl-dev \
       libudev-dev \
