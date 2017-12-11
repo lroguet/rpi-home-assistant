@@ -58,6 +58,7 @@ RUN apt-get update && \
     apt-get install --no-install-recommends \
       autoconf \
       build-essential python3-dev python3-pip python3-setuptools \
+      libcups2-dev \
       libffi-dev libpython-dev libssl-dev \
       libudev-dev \
       bluetooth libbluetooth-dev \
