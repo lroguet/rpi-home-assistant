@@ -2,7 +2,7 @@
 
 HA_LATEST=false
 DOCKER_IMAGE_NAME="lroguet/rpi-home-assistant"
-RASPIAN_RELEASE="stretch"
+RASPBIAN_RELEASE="stretch"
 
 log() {
    now=$(date +"%Y%m%d-%H%M%S")
@@ -39,7 +39,7 @@ fi
 ## Generate the Dockerfile
 ## #####################################################################
 cat << _EOF_ > Dockerfile
-FROM resin/rpi-raspbian:$RASPIAN_RELEASE
+FROM resin/rpi-raspbian:$RASPBIAN_RELEASE
 MAINTAINER Ludovic Roguet <code@fourteenislands.io>
 
 # Base layer
@@ -84,7 +84,7 @@ _EOF_
 ## #####################################################################
 log "Building $DOCKER_IMAGE_NAME:$HA_VERSION"
 ## Force-pull the base image
-docker pull resin/rpi-raspbian:$RASPIAN_RELEASE
+docker pull resin/rpi-raspbian:$RASPBIAN_RELEASE
 docker build -t $DOCKER_IMAGE_NAME:$HA_VERSION .
 
 log "Pushing $DOCKER_IMAGE_NAME:$HA_VERSION"
@@ -100,4 +100,9 @@ if [ "$HA_LATEST" = true ]; then
 fi
 
 docker rmi -f $DOCKER_IMAGE_NAME:$HA_VERSION
+
+## Clean-up Docker environment
+docker ps -aq --no-trunc | xargs docker rm
+docker images -q --filter dangling=true | xargs docker rmi
+
 log ">>--------------------->>"
