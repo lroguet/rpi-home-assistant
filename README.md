@@ -52,7 +52,10 @@ hass:
 `docker-compose run -d --service-ports hass`
 
 ## Show some love
-Enjoying `lroguet/rpi-home-assistant`? Consider a Bitcoin donation to the following address `392rfMkkcT151X9gyaomwg51jQhQePjhJn`
+If you find `lroguet/rpi-home-assistant` useful please consider making a donation.
+
+Bitcoin (BTC). `392rfMkkcT151X9gyaomwg51jQhQePjhJn`
+Ethereum (ETH). `0x4c1df38371D280Ab9706719875413ae9944D5a50`
 
 ## Links
 * [Home Assistant, Docker & a Raspberry Pi](https://fourteenislands.io/home-assistant-docker-and-a-raspberry-pi/)
