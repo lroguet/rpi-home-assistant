@@ -54,7 +54,7 @@ hass:
 ## Show some love
 If you find `lroguet/rpi-home-assistant` useful please consider making a donation.
 
-Bitcoin (BTC). `392rfMkkcT151X9gyaomwg51jQhQePjhJn`
+Bitcoin (BTC). `392rfMkkcT151X9gyaomwg51jQhQePjhJn`   
 Ethereum (ETH). `0x4c1df38371D280Ab9706719875413ae9944D5a50`
 
 ## Links
