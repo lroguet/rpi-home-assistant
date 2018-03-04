@@ -54,8 +54,8 @@ hass:
 ## Show some love
 If you find `lroguet/rpi-home-assistant` useful please consider making a donation.
 
-Bitcoin (BTC). `392rfMkkcT151X9gyaomwg51jQhQePjhJn`   
-Ethereum (ETH). `0x4c1df38371D280Ab9706719875413ae9944D5a50`
+Bitcoin (BTC). `1JU59RHfmdEZCPgetf3rjrWU8JQiFeGPaL`   
+Ethereum (ETH). `0x5BbaAb38Be768F281Bc08Ee380735FC5C8cc5CD0`
 
 ## Links
 * [Home Assistant, Docker & a Raspberry Pi](https://fourteenislands.io/home-assistant-docker-and-a-raspberry-pi/)
