@@ -54,13 +54,16 @@ ENV CROSS_COMPILE=/usr/bin/
 # #11:	20170628 - Added libud3v-dev for https://home-assistant.io/components/zwave/
 # #14: 	20170802 - Added bluetooth and libbluetooth-dev for https://home-assistant.io/components/device_tracker.bluetooth_tracker/
 # #17:	20171203 - Added autoconf for https://home-assistant.io/components/tradfri/
+# #29:   20181208 - Added libusb-1.0-0 and android-tools-adb for https://www.home-assistant.io/components/media_player.firetv/
 RUN apt-get update && \
     apt-get install --no-install-recommends \
+      android-tools-adb \
       autoconf \
       build-essential python3-dev python3-pip python3-setuptools \
       libcups2-dev \
       libffi-dev libpython-dev libssl-dev \
       libudev-dev \
+      libusb-1.0-0 \
       bluetooth libbluetooth-dev \
       net-tools nmap \
       iputils-ping \
