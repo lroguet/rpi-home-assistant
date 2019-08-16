@@ -108,6 +108,7 @@ log "Removing $DOCKER_IMAGE_NAME:$HA_VERSION locally"
 docker rmi -f $DOCKER_IMAGE_NAME:$HA_VERSION
 
 ## Clean-up Docker environment
+rm Dockerfile
 docker ps -aq --no-trunc | xargs docker rm
 docker images -q --filter dangling=true | xargs docker rmi
 
