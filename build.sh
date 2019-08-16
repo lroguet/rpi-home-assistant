@@ -2,7 +2,8 @@
 
 HA_LATEST=false
 DOCKER_IMAGE_NAME="lroguet/rpi-home-assistant"
-RASPBIAN_RELEASE="stretch"
+RASPBIAN_IMAGE_NAME="balenalib/rpi-raspbian"
+RASPBIAN_RELEASE="buster"
 
 log() {
    now=$(date +"%Y%m%d-%H%M%S")
@@ -39,7 +40,7 @@ fi
 ## Generate the Dockerfile
 ## #####################################################################
 cat << _EOF_ > Dockerfile
-FROM resin/rpi-raspbian:$RASPBIAN_RELEASE
+FROM $RASPBIAN_IMAGE_NAME:$RASPBIAN_RELEASE
 MAINTAINER Ludovic Roguet <code@fourteenislands.io>
 
 # Base layer
@@ -54,7 +55,7 @@ ENV CROSS_COMPILE=/usr/bin/
 # #11:	20170628 - Added libud3v-dev for https://home-assistant.io/components/zwave/
 # #14: 	20170802 - Added bluetooth and libbluetooth-dev for https://home-assistant.io/components/device_tracker.bluetooth_tracker/
 # #17:	20171203 - Added autoconf for https://home-assistant.io/components/tradfri/
-# #29:   20181208 - Added libusb-1.0-0 and android-tools-adb for https://www.home-assistant.io/components/media_player.firetv/
+# #29:  20181208 - Added libusb-1.0-0 and android-tools-adb for https://www.home-assistant.io/components/media_player.firetv/
 RUN apt-get update && \
     apt-get install --no-install-recommends \
       android-tools-adb \
@@ -87,7 +88,7 @@ _EOF_
 ## #####################################################################
 log "Building $DOCKER_IMAGE_NAME:$HA_VERSION"
 ## Force-pull the base image
-docker pull resin/rpi-raspbian:$RASPBIAN_RELEASE
+docker pull $RASPBIAN_IMAGE_NAME:$RASPBIAN_RELEASE
 docker build -t $DOCKER_IMAGE_NAME:$HA_VERSION .
 
 log "Pushing $DOCKER_IMAGE_NAME:$HA_VERSION"
@@ -99,9 +100,11 @@ if [ "$HA_LATEST" = true ]; then
    log "Pushing $DOCKER_IMAGE_NAME:latest"
    docker push $DOCKER_IMAGE_NAME:latest
    echo $HA_VERSION > /var/log/home-assistant/docker-build.version
+   log "Removing $DOCKER_IMAGE_NAME:latest locally"
    docker rmi -f $DOCKER_IMAGE_NAME:latest
 fi
 
+log "Removing $DOCKER_IMAGE_NAME:$HA_VERSION locally"
 docker rmi -f $DOCKER_IMAGE_NAME:$HA_VERSION
 
 ## Clean-up Docker environment
