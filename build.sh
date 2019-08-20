@@ -56,6 +56,7 @@ ENV CROSS_COMPILE=/usr/bin/
 # #14: 	20170802 - Added bluetooth and libbluetooth-dev for https://home-assistant.io/components/device_tracker.bluetooth_tracker/
 # #17:	20171203 - Added autoconf for https://home-assistant.io/components/tradfri/
 # #29:  20181208 - Added libusb-1.0-0 and android-tools-adb for https://www.home-assistant.io/components/media_player.firetv/
+# #23:  20190820 - Upgraded base image to balenalib/rpi-raspbian:buster (Python 3.7)
 RUN apt-get update && \
     apt-get install --no-install-recommends \
       android-tools-adb \
